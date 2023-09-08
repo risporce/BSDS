@@ -4,6 +4,8 @@ Discord link : https://discord.gg/mt4dUxXryh
 
 iOS : https://mega.nz/file/x5MnUarQ#uyOo1KFtB-GWmtTV9c8CEHE2swtG8EVddJnxXdBMLU8
 
+Android: https://www.mediafire.com/file/jan02oezh1iqwmi/BSDS-v47.apk/file
+
 Second link (fix crash on non-jb device but can't play alongside Brawl Stars, need to delete bs to play) : https://mega.nz/file/UgM02BjB#ffctMG9YrRpXDr-ZdekR-TE3Gs7Gf6IsDsuQwSo1KFU 
 
 ## Requirements: ##
@@ -38,5 +40,7 @@ Second link (fix crash on non-jb device but can't play alongside Brawl Stars, ne
 
 ## credits ##
 [S.B#0056](https://github.com/HaccerCat) for his help with crypto and client
+
+[gabriel5_](https://github.com/Gabriel55ita) Android Client
 
 [Vitalik](https://github.com/VitalikObject) for his crypto from [OldBrawl](https://github.com/VitalikObject/OldBrawl)
