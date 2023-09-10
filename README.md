@@ -28,7 +28,7 @@ Discord link : https://discord.gg/mt4dUxXryh
 7: Install the client using your favorite app installer and enjoy BSDS.
 
 ### Android client ###
-1: Download the apk here: soon ;)
+1: Download the apk here: https://www.mediafire.com/file/7p86q6kdqbdjdp1/bsds-v51_src.apk/file
 
 2: Download an apk editor of your choice
 
@@ -43,13 +43,11 @@ Discord link : https://discord.gg/mt4dUxXryh
 ## Optional Steps [ Android ] ##
 1: If you want to change port you could change redirectPort to whatever port you want, keep in mind you have to change port in server too.
 
-2: if you don't want bsds settings you could disable it by setting hideBSDSSettings to true 
-
 ![IMG_1193](https://github.com/risporce/BSDS/assets/72312877/02eadac3-a921-4526-af2c-0c185f9975d3)
 
 ## credits ##
 [kagenay](https://github.com/kagenay) Android Client
 
-[S.B#0056](https://github.com/HaccerCat) for his help with crypto and client
+[s.b](https://github.com/HaccerCat) for his help with crypto and client
 
 [Vitalik](https://github.com/VitalikObject) for his crypto from [OldBrawl](https://github.com/VitalikObject/OldBrawl)
