@@ -566,7 +566,6 @@ class ByteStream(ChecksumEncoder):
 
     def readCompressedString(self):
         data_length = self.readInt()
-        print(data_length)
         if data_length != 4294967295:
             self.readIntLittleEndian()
             return zlib.decompress(self.readBytes(data_length - 4))

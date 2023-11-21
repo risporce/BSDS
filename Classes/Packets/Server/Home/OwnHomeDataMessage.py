@@ -70,7 +70,7 @@ class OwnHomeDataMessage(PiranhaMessage):
         self.writeVInt(0) # name change cost
         self.writeVInt(0) # timer for next name change
 
-        self.writeVInt(9) # shop offers count
+        self.writeVInt(10) # shop offers count
 
         self.writeVInt(1) # reward count
         self.writeVInt(50) # item type
@@ -210,11 +210,51 @@ class OwnHomeDataMessage(PiranhaMessage):
         self.writeStringReference("100 STARR DROP OFFER") # title
         self.writeVInt(0)
         self.writeBoolean(False)
-        self.writeString("offer_overcharge")
+        self.writeString("offer_bgr_enchanted")
         self.writeVInt(-1)
         self.writeBoolean(False)
         self.writeVInt(1)
         self.writeVInt(100) # offer value
+        self.writeString("")
+        self.writeBoolean(False)
+        self.writeBoolean(False)
+        self.writeVInt(0)
+        self.writeVInt(0)
+        self.writeBoolean(False)
+        self.writeBoolean(False)
+        self.writeVInt(0)
+        self.writeVInt(-1)
+        self.writeVInt(0)
+        #v51
+        self.writeBoolean(False)
+        self.writeBoolean(False)
+        self.writeVInt(0)
+        self.writeVInt(0)
+        self.writeBoolean(False)
+
+        self.writeVInt(1) # reward count
+        self.writeVInt(50) # item type
+        self.writeVInt(1100) # quantity
+        self.writeDataReference(0)# csv reference
+        self.writeVInt(0) 
+        self.writeVInt(0)
+        self.writeVInt(11) # new price
+        self.writeVInt(19909) # timer until gone
+        self.writeVInt(1)
+        self.writeVInt(0)
+        self.writeBoolean(False)
+        self.writeVInt(8881)
+        self.writeVInt(0)
+        self.writeBoolean(False)
+        self.writeVInt(0) # old price
+        self.writeStringReference("FAST OPEN 1100 STARR DROP OFFER") # title # fast open 1 year of free battle starr drop, fast open mean you won't click on each of them, it will automatically open them (ddos warning)
+        self.writeVInt(0)
+        self.writeBoolean(False)
+        self.writeString("offer_overcharge")
+        self.writeVInt(-1)
+        self.writeBoolean(False)
+        self.writeVInt(1)
+        self.writeVInt(1100) # offer value
         self.writeString("")
         self.writeBoolean(False)
         self.writeBoolean(False)
@@ -759,7 +799,7 @@ class OwnHomeDataMessage(PiranhaMessage):
 
         self.writeDataReference(5, 8) # gold
         self.writeVInt(-1)
-        self.writeVInt(1000000) 
+        self.writeVInt(0) 
 
         self.writeDataReference(5, 21) # fame
         self.writeVInt(-1)
@@ -767,11 +807,11 @@ class OwnHomeDataMessage(PiranhaMessage):
 
         self.writeDataReference(5, 22) # powerpoints
         self.writeVInt(-1)
-        self.writeVInt(100000)
+        self.writeVInt(0)
 
         self.writeDataReference(5, 23) # bling
         self.writeVInt(-1)
-        self.writeVInt(7000)
+        self.writeVInt(0)
 
         countBrawler = 75
         self.writeVInt(countBrawler) # HeroScore

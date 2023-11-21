@@ -1,43 +1,87 @@
 from Classes.Commands.LogicServerCommand import LogicServerCommand
-from Classes.Logic.LogicStarrDropData import starrDropOpening
-import random
 
+delivery_ids = {
+    "Coins": {
+        "DeliveryID": 7
+    },
+    "TokenDoubler": {
+        "DeliveryID": 2
+    },
+    "Credits": {
+        "DeliveryID": 22
+    },
+    "ChromaCredits": {
+        "DeliveryID": 23
+    },
+    "PowerPoints": {
+        "DeliveryID": 24
+    },
+    "Blings": {
+        "DeliveryID": 25
+    },
+    "Brawler": {
+        "DeliveryID": 1
+    },
+    "Skin": {
+        "DeliveryID": 9
+    },
+    "Pin": {
+        "DeliveryID": 11
+    },
+    "ProfilePic": {
+        "DeliveryID": 11
+    },
+    "Spray": {
+        "DeliveryID": 11
+    },
+    "StarPower": {
+
+        "DeliveryID": 4
+    },
+    "Gadget": {
+        "DeliveryID": 4
+    },
+    "Overcharge": {
+        "DeliveryID": 4
+    },
+}
 
 class LogicGiveDeliveryItemsCommand(LogicServerCommand):
     def __init__(self, commandData):
         super().__init__(commandData)
+        self.delivery_ids = delivery_ids
 
     def encode(self, fields):
-        starrDrop = starrDropOpening.getStarrDropEncoding()
-        print(starrDrop)
-        self.writeVInt(0)
+        reward = fields["reward"]
+        self.writeVInt(1)
         self.writeVInt(1) # count rewards
         for x in range(1):
-            item_name = starrDrop[0][1]
-            deliveryID = starrDropOpening.getDeliveryIdFromOfferType(item_name)
+
             self.writeVInt(100) # type
             self.writeVInt(1)
             for y in range(1):
-                self.writeVInt(starrDrop[0][2]) # amount
-                if item_name == "Brawler":
-                    self.writeDataReference(16,starrDrop[0][3])
+                offer_type = reward[1]
+                deliveryID = self.delivery_ids[f"{offer_type}"]["DeliveryID"]
+                self.writeVInt(reward[2]) # amount
+                if offer_type == "Brawler":
+                    self.writeDataReference(16,reward[3])
                 else:
                     self.writeDataReference(0, 0) # brawler id
                 self.writeVInt(deliveryID)
-                if item_name == "Skin":
-                    self.writeDataReference(29, starrDrop[0][3])
+                if offer_type == "Skin":
+                    self.writeDataReference(29, reward[3])
                 else:
                     self.writeDataReference(0,0) # skin id
-                if item_name == "Pin":
-                    self.writeDataReference(52,starrDrop[0][3]) # pin/thumbnail/spray
-                elif item_name == "ProfilePic":
-                    self.writeDataReference(28,starrDrop[0][3]) # pin/thumbnail/spray
-                elif item_name == "Spray":
-                    self.writeDataReference(68,starrDrop[0][3]) # pin/thumbnail/spray
+                if offer_type == "Pin":
+                    self.writeDataReference(52,reward[3]) # pin/thumbnail/spray
+                elif offer_type == "ProfilePic":
+                    self.writeDataReference(28,reward[3]) # pin/thumbnail/spray
+                elif offer_type == "Spray":
+                    self.writeDataReference(68,reward[3]) # pin/thumbnail/spray
                 else:
                     self.writeDataReference(0, 0)
-                if item_name == "StarPower" or item_name == "Gadget" or item_name == "Overcharge":
-                    self.writeDataReference(23,starrDrop[0][3]) #star power/gadget
+                if offer_type == "StarPower" or offer_type == "Gadget" or offer_type == "Overcharge":
+                    self.writeDataReference(23,reward[3]) #star power/gadget
                 else:
                     self.writeDataReference(0, 0)
                 self.writeVInt(x)

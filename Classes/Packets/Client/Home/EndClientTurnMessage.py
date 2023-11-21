@@ -41,17 +41,19 @@ class EndClientTurnMessage(PiranhaMessage):
             if hasattr(command["Instance"], 'execute'):
                 command["Instance"].execute(calling_instance, command["Fields"])
             if command["ID"] == 571:
-                pass
-                fields["ServerCommandID"] = 203
-                Messaging.sendMessage(24111, fields, cryptoInit, calling_instance.player)
+                if starrDropOpening.fast_open:
+                    for i in range(len(starrDropOpening.getStarrDropEncoding()) -1):
+                        fields["ServerCommandID"] = 203
+                        fields["reward"] = starrDropOpening.getStarrDropEncoding()[0]
+                        Messaging.sendMessage(24111, fields, cryptoInit, calling_instance.player)
+                        starrDropOpening.refreshData()
+                else:
+                    fields["ServerCommandID"] = 203
+                    fields["reward"] = starrDropOpening.getStarrDropEncoding()[0]
+                    Messaging.sendMessage(24111, fields, cryptoInit, calling_instance.player)
                 fields["ServerCommandID"] = 228
                 Messaging.sendMessage(24111, fields, cryptoInit, calling_instance.player)
             elif command["ID"] == 519:
-            #     fields["ServerCommandID"] = 203
-            #     Messaging.sendMessage(24111, fields, cryptoInit, calling_instance.player)
-            # elif command["ID"] == 203:
-            #     fields["ServerCommandID"] = 228
-            #     Messaging.sendMessage(24111, fields, cryptoInit, calling_instance.player)
                 Messaging.sendMessage(24104, {"Socket": calling_instance.client, "ServerChecksum": 0, "ClientChecksum": 0, "Tick": 0}, cryptoInit)
 
     def getMessageType(self):
