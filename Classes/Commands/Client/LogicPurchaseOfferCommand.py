@@ -42,9 +42,9 @@ class LogicPurchaseOfferCommand(LogicCommand):
         elif fields["OfferIndex"] == 7:
             starrDropOpening.create_starrDrop_opening(10, "Epic", True)
         elif fields["OfferIndex"] == 8:
-            starrDropOpening.create_starrDrop_opening(11000, "Mythic", True)
+            starrDropOpening.create_starrDrop_opening(10, "Mythic", True)
         elif fields["OfferIndex"] == 9:
-            starrDropOpening.create_starrDrop_opening(1000, "Legendary", True)
+            starrDropOpening.create_starrDrop_opening(10, "Legendary", True)
 
     def getCommandType(self):
         return 519
