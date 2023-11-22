@@ -70,13 +70,16 @@ class OwnHomeDataMessage(PiranhaMessage):
         self.writeVInt(0) # name change cost
         self.writeVInt(0) # timer for next name change
 
-        self.writeVInt(10) # shop offers count
+        offers_background = ["offer_bgr_generic", "offer_bgr_special", "offer_bgr_legendary", "offer_bgr_finals", "offer_bgr_chromatic", "offer_bgr_archive", "offer_bgr_random", "offer_bgr_velocirapids", "offer_bgr_onceupon", "offer_bgr_pinpack", "offer_bgr_retrto", "offer_bgr_brawloween", "offer_bgr_brawlywood", "offer_bgr_blackfriday", "offer_bgr_singlesday", "offer_bgr_brawlidays", "offer_bgr_mrbeast", "offer_bgr_biodome", "offer_bgr_easter22", "offer_bgr_esports22", "offer_bgr_ramadan22", "offer_bgr_gw2022", "offer_bgr_starter", "offer_bgr_stuntshow", "offer_bgr_villains", "offer_bgr_deepsea", "offer_bgr_moonfestival22", "offer_bgr_robotfactory", "offer_bgr_brawloween22", "offer_bgr_action", "offer_bgr_lastbox", "offer_bgr_4thanniversary", "offer_bgr_lny23red", "offer_bgr_lny23green", "offer_bgr_candyland", "offer_bgr_darkmas", "offer_bgr_brawlentines23", "offer_bgr_ramadan2023", "offer_bgr_easter2023", "offer_bgr_popstar", "offer_bgr_gw2023", "offer_bgr_jungle", "offer_bgr_olympus", "offer_bgr_enchanted", "offer_bgr_cursed", "offer_bgr_football2023", "offer_bgr_phoenix", "offer_overcharge", "offer_bgr_mecha_edgar", "offer_bgr_university", "offer_bgr_mf2023", "offer_bgr_wasteland", "offer_rarity_rare", "offer_rarity_super_rare", "offer_rarity_epic", "offer_rarity_mythic", "offer_rarity_legendary","offer_bgr_rarity_chromatic","offer_bgr_legendary_dark", "offer_bgr_wf2023", "offer_bgr_circus", "offer_bgr_retro2023", "offer_bgr_brawloween2023", "offer_bgr_monsterrobot", "offer_bgr_outlaw", "offer_bgr_claship", "offer_bgr_punk", "offer_bgr_blue", "offer_bgr_bt21", "offer_bgr_masks", "offer_bgr_hub", "offer_bgr_hindu", "offer_bgr_make", "offer_bgr_mecha", "offer_bgr_boxes", "offer_bgr_xmas", "offer_bgr_lny", "offer_bgr_mf", "offer_bgr_wf", "offer_bgr_lunar", "offer_bgr_lyn", "offer_bgr_vault", "offer_bgr_mf21", "offer_bgr_stv"]
+
+        self.writeVInt(10 + len(offers_background)) # shop offers count
 
         self.writeVInt(1) # reward count
         self.writeVInt(50) # item type
         self.writeVInt(3) # quantity
         self.writeDataReference(0)# csv reference
-        self.writeVInt(0) 
+        self.writeVInt(0) # go in the corresponding csv file in case not set in csv ref before
+
         self.writeVInt(0)
         self.writeVInt(1) # new price
         self.writeVInt(19909) # timer until gone
@@ -94,7 +97,7 @@ class OwnHomeDataMessage(PiranhaMessage):
         self.writeVInt(-1)
         self.writeBoolean(False)
         self.writeVInt(1)
-        self.writeVInt(5) # offer value
+        self.writeVInt(3) # offer value
         self.writeString("")
         self.writeBoolean(False)
         self.writeBoolean(False)
@@ -471,6 +474,49 @@ class OwnHomeDataMessage(PiranhaMessage):
         self.writeVInt(0)
         self.writeVInt(0)
         self.writeBoolean(False)
+
+        for offer_bgr in offers_background:
+
+            self.writeVInt(1) # reward count
+            self.writeVInt(20) # item type
+            self.writeVInt(1) # quantity
+            self.writeDataReference(0)# csv reference
+            self.writeVInt(0) # go in the corresponding csv file in case not set in csv ref before
+
+            self.writeVInt(0)
+            self.writeVInt(1) # new price
+            self.writeVInt(19909) # timer until gone
+            self.writeVInt(1)
+            self.writeVInt(0)
+            self.writeBoolean(False)
+            self.writeVInt(8881)
+            self.writeVInt(0)
+            self.writeBoolean(False)
+            self.writeVInt(0) # old price
+            self.writeStringReference(offer_bgr) # title
+            self.writeVInt(0)
+            self.writeBoolean(False)
+            self.writeString(offer_bgr)
+            self.writeVInt(-1)
+            self.writeBoolean(False)
+            self.writeVInt(1)
+            self.writeVInt(3) # offer value
+            self.writeString("")
+            self.writeBoolean(False)
+            self.writeBoolean(False)
+            self.writeVInt(0)
+            self.writeVInt(0)
+            self.writeBoolean(False)
+            self.writeBoolean(False)
+            self.writeVInt(0)
+            self.writeVInt(-1)
+            self.writeVInt(0)
+            #v51
+            self.writeBoolean(False)
+            self.writeBoolean(False)
+            self.writeVInt(0)
+            self.writeVInt(0)
+            self.writeBoolean(False)
 
         self.writeVInt(20) # tokens for battle
         self.writeVInt(1428) # timer until new token

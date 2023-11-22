@@ -422,7 +422,7 @@ class LogicStarrDropData():
                 starrDrop.append(type_mapping[starrDrop_type]())
 
             self.starr_drop_encoding_data.append(starrDrop)
-        self.prettyPrintRewards()
+        print(self.prettyPrintRewards())
     
     def getStarrDropEncoding(self):
         return self.starr_drop_encoding_data
@@ -487,7 +487,7 @@ class LogicStarrDropData():
             self.profilePic_total += amount
 
     def prettyPrintRewards(self):
-        print(f'''Coins: {self.coin_total}
+        return (f'''Coins: {self.coin_total}
 PowerPoints: {self.powerPoint_total}
 Token Doublers: {self.tokenDoubler_Total}
 Blings: {self.bling_total}
@@ -513,17 +513,20 @@ Legendary Starr Drop: {self.legendary_count}
             ByteStream.writeDataReference(80, i)
             ByteStream.writeVInt(-1)
             ByteStream.writeVInt(0)
-        ByteStream.writeVInt(len(self.starr_drop_encoding_data))
-        for x in range(len(self.starr_drop_encoding_data)):
-            ByteStream.writeDataReference(80,self.starr_drop_encoding_data[x][0])
-        ByteStream.writeVInt(len(self.starr_drop_encoding_data))
-        for x in range(len(self.starr_drop_encoding_data)):
+        if (len(self.starr_drop_encoding_data) != 0):
+            ByteStream.writeVInt(1)
+            ByteStream.writeDataReference(80,self.starr_drop_encoding_data[0][0])
+            ByteStream.writeVInt(1)
+
             ByteStream.writeByte(1)
-            reward_type = self.starr_drop_encoding_data[x][1]
+            reward_type = self.starr_drop_encoding_data[0][1]
             offer_id_type = self.shop_ids[reward_type]["OfferID"]
             ByteStream.writeVInt(offer_id_type)
-            ByteStream.writeVInt(self.starr_drop_encoding_data[x][2])
+            ByteStream.writeVInt(self.starr_drop_encoding_data[0][2])
             ByteStream.writeDataReference(0, 0)
+            ByteStream.writeVInt(0)
+        else:
+            ByteStream.writeVInt(0)
             ByteStream.writeVInt(0)
         ByteStream.writeInt(-1788180018)
         ByteStream.writeVInt(0) # progression step in battles

@@ -41,7 +41,7 @@ class EndClientTurnMessage(PiranhaMessage):
             if hasattr(command["Instance"], 'execute'):
                 command["Instance"].execute(calling_instance, command["Fields"])
             if command["ID"] == 571:
-                if starrDropOpening.fast_open:
+                if starrDropOpening.fast_open: # can result in large internet usage, hopefully we can save a lot by not refreshing ohd by command 228 every single time like we need to do to open drop 1 by 1
                     for i in range(len(starrDropOpening.getStarrDropEncoding()) -1):
                         fields["ServerCommandID"] = 203
                         fields["reward"] = starrDropOpening.getStarrDropEncoding()[0]
